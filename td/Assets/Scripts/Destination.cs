@@ -5,8 +5,12 @@ using UnityEngine;
 public class Destination : MonoBehaviour
 {
     [SerializeField]
-    private int _enemysPassed=30;
+    private int _enemysLeft=30;
     // Start is called before the first frame update
+    public int GetEnemiesLeft()
+    {
+        return _enemysLeft;
+    }
     void Start()
     {
         
@@ -23,7 +27,7 @@ public class Destination : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("On Trigger Entrou");
-        _enemysPassed--;
+        _enemysLeft--;
         Destroy(other.gameObject);
     }
 }

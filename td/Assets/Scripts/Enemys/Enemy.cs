@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour,IEnemy
     private GameObject Weapon;
     [SerializeField]
     private string _enemyName;
+    [SerializeField]
+    private Souls _soul;
 
    public void LifeDamage(int damageTaken)
     {
@@ -17,6 +19,8 @@ public class Enemy : MonoBehaviour,IEnemy
 
         if(Life <= 0)
         {
+            Instantiate(_soul, transform.position, Quaternion.identity);
+            
             Destroy(this.gameObject);
         }
     }
