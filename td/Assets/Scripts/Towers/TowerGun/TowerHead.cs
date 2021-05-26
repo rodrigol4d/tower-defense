@@ -8,7 +8,7 @@ public class TowerHead : MonoBehaviour
     [Header("Atributtes")]
 
     public float TowerRadius = 1f;
-    public int layerMask = 1 << 6;
+    public LayerMask layerMask;
     Quaternion RotGoal;
     Vector3 Direction;
     public float LookSpeed = 0.10f;
