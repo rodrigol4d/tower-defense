@@ -155,8 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f0532cb72321a44a1e8e6d6278ba6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TowerRadius: 3
-  layerMask: 64
+  TowerRadius: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
   LookSpeed: 0.1
   currentHitObject: {fileID: 0}
   hitColliders: []
@@ -288,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5607113777880635514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7480352, y: 2.073, z: -2.6139}
+  m_LocalPosition: {x: 4.563333, y: 1.4, z: 1.3563876}
   m_LocalScale: {x: 0.55016, y: 0.55016, z: 0.5351006}
   m_Children:
   - {fileID: 5607113776861660502}
@@ -352,8 +354,8 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5607113777880635514}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1

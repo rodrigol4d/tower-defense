@@ -32,7 +32,7 @@ public class Souls : MonoBehaviour
     {
         if (other.tag == "Soul_Collector")
         {
-            Debug.Log("Trigger ativo");
+
             _soulCollector.SetSouls(_soulValue);
             Destroy(this.gameObject);
 

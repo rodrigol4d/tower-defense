@@ -49,7 +49,7 @@ public class Bullet : MonoBehaviour
         if(other.tag == "Enemy")
         {
            
-            Debug.Log(damage + "eeee");
+
             other.GetComponent<Enemy>().LifeDamage(damage);
          
             Destroy(this.gameObject);
