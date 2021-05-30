@@ -6,53 +6,181 @@ public class SelectionManager : MonoBehaviour
 {
     public Camera fpsCam;
     [SerializeField]
-    public GameObject placableObjectPrefab;
+    public GameObject[] placableObjectsPrefab = new GameObject[10];
     [SerializeField]
-    private KeyCode newObjectHotKey = KeyCode.F1;
+    private KeyCode[] _objectsHotKey = new KeyCode[10];
     [SerializeField]
     private GameObject currentPlacableObject;
-   
+    [SerializeField]
+    private LayerMask layer;
+
+     void Start()
+    {
+        
+    }
+
+  
+
+    void SelectObject()
+    {
+        if (Input.GetKeyDown(_objectsHotKey[0])){
+            
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[0])
+            {
+                Debug.Log("Key pressed" + _objectsHotKey[0]);
+                currentPlacableObject = Instantiate(placableObjectsPrefab[0]);
+
+            }
+            
+        }
+        if (Input.GetKeyDown(_objectsHotKey[1]))
+        {
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[1])
+            {
+                currentPlacableObject = Instantiate(placableObjectsPrefab[1]);
+
+            }
+        }
+        if (Input.GetKeyDown(_objectsHotKey[2]))
+        {
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[2])
+            {
+                currentPlacableObject = Instantiate(placableObjectsPrefab[2]);
+
+            }
+        }
+        if (Input.GetKeyDown(_objectsHotKey[3]))
+        {
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[3])
+            {
+                currentPlacableObject = Instantiate(placableObjectsPrefab[3]);
+
+            }
+        }
+        if (Input.GetKeyDown(_objectsHotKey[4]))
+        {
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[4])
+            {
+                currentPlacableObject = Instantiate(placableObjectsPrefab[4]);
+
+            }
+        }
+        if (Input.GetKeyDown(_objectsHotKey[5]))
+        {
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[5])
+            {
+                currentPlacableObject = Instantiate(placableObjectsPrefab[5]);
+
+            }
+        }
+        if (Input.GetKeyDown(_objectsHotKey[6]))
+        {
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[6])
+            {
+                currentPlacableObject = Instantiate(placableObjectsPrefab[6]);
+
+            }
+        }
+        if (Input.GetKeyDown(_objectsHotKey[7]))
+        {
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[7])
+            {
+                currentPlacableObject = Instantiate(placableObjectsPrefab[7]);
+
+            }
+        }
+        if (Input.GetKeyDown(_objectsHotKey[8]))
+        {
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[8])
+            {
+                currentPlacableObject = Instantiate(placableObjectsPrefab[8]);
+
+            }
+        }
+        if (Input.GetKeyDown(_objectsHotKey[9]))
+        {
+            Destroy(this.currentPlacableObject);
+            if (placableObjectsPrefab[9])
+            {
+                currentPlacableObject = Instantiate(placableObjectsPrefab[9]);
+
+            }
+        }
+
+
+
+
+
+    }
+
     void Update()
     {
         if(currentPlacableObject != null)
         {
-             Shoot();
+            ObjectPlacement();
 
         }
+        SelectObject();
         
-        HandleNewObjectHotKey();
-       
+      
+
 
 
     }
-    void HandleNewObjectHotKey()
+
+
+    void ObjectPlacement()
     {
-        if (Input.GetKeyDown(newObjectHotKey))
-        {
-            if(currentPlacableObject == null)
-            {
-                currentPlacableObject = Instantiate(placableObjectPrefab);
-            }
-
-        }
-    }
-
-
-    void Shoot()
-    {
+        Ray ray = new Ray(fpsCam.transform.position, fpsCam.transform.forward);
         RaycastHit hit;
-       if( Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward,out hit, 100f)){
-       
-                Debug.Log(hit.point);
-                currentPlacableObject.transform.position = hit.point;
-               // Posicionamento com curvatura -->  currentPlacableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+        TowerBluePrint towerBluePrint = currentPlacableObject.GetComponent<TowerBluePrint>();
 
+     
+
+
+
+        if ( Physics.Raycast(ray,out hit,Mathf.Infinity)){
+
+            if (hit.transform.gameObject.layer == 6)
+            {
+
+                currentPlacableObject.transform.position = hit.point + new Vector3(0.0f, 0.5f, 0);
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Debug.Log("Mouse Clicked");
+                    currentPlacableObject.GetComponent<TowerBluePrint>().InstantiateGameObject();
+
+                    currentPlacableObject = null;
+
+                }
+                
+
+
+
+            }
+            else { }
+         
+
+            Debug.DrawLine(ray.origin,hit.point,Color.green);
+           
+          //    currentPlacableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+
+        }
+        else
+        {
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100, Color.blue);
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(Camera.main.ScreenPointToRay(Input.mousePosition));
-    }
+
 }
