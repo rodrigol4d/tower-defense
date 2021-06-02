@@ -8,7 +8,7 @@ public class SelectionManager : MonoBehaviour
     [SerializeField]
     public GameObject[] placableObjectsPrefab = new GameObject[10];
     [SerializeField]
-    private KeyCode[] _objectsHotKey = new KeyCode[10];
+    private KeyCode[] _objectsHotKey = new KeyCode[11];
     [SerializeField]
     private GameObject currentPlacableObject;
     [SerializeField]
@@ -116,6 +116,15 @@ public class SelectionManager : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(_objectsHotKey[10]))
+        {
+            
+           
+                Destroy(this.currentPlacableObject);
+
+            
+        }
+
 
 
 
@@ -142,7 +151,7 @@ public class SelectionManager : MonoBehaviour
     {
         Ray ray = new Ray(fpsCam.transform.position, fpsCam.transform.forward);
         RaycastHit hit;
-        TowerBluePrint towerBluePrint = currentPlacableObject.GetComponent<TowerBluePrint>();
+        PlacableBluePrint placableBluePrint = currentPlacableObject.GetComponent<PlacableBluePrint>();
 
      
 
@@ -150,15 +159,19 @@ public class SelectionManager : MonoBehaviour
 
         if ( Physics.Raycast(ray,out hit,Mathf.Infinity)){
 
-            if (hit.transform.gameObject.layer == 6)
+            // Se ligar o collider deste objeto, ira dar problema na lógica atual
+
+            if (hit.transform.gameObject.layer == 6 )
             {
+                Debug.Log(hit.transform.gameObject.layer);
 
                 currentPlacableObject.transform.position = hit.point + new Vector3(0.0f, 0.5f, 0);
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && !placableBluePrint._hasCollided)
                 {
+
                     Debug.Log("Mouse Clicked");
-                    currentPlacableObject.GetComponent<TowerBluePrint>().InstantiateGameObject();
+                    placableBluePrint.InstantiateGameObject();
 
                     currentPlacableObject = null;
 
@@ -167,7 +180,7 @@ public class SelectionManager : MonoBehaviour
 
 
 
-            }
+          }
             else { }
          
 
