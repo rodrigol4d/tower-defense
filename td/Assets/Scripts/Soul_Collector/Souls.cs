@@ -9,7 +9,7 @@ public class Souls : MonoBehaviour
     [SerializeField]
     private Soul_Collector _soulCollector;
 
-    private int speed = 1;
+    private float speed = 0.8f;
 
     // Start is called before the first frame update
     void Start()

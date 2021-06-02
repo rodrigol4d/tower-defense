@@ -26,8 +26,13 @@ public class Destination : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("On Trigger Entrou");
-        _enemysLeft--;
-        Destroy(other.gameObject);
+        if (other.tag == "Enemy")
+        {
+            Debug.Log("On Trigger Entrou");
+            _enemysLeft--;
+            Destroy(other.gameObject);
+
+        }
+       
     }
 }
