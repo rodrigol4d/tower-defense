@@ -5,9 +5,14 @@ using UnityEngine;
 public class PlayerMoviment : MonoBehaviour
 {
     public CharacterController controller;
+    float velocityX = 0.0f;
+    float velocityZ = 0.0f;
     public float speed = 12f;
 
+    Animator animator;
     Vector3 velocity;
+    
+    
     public float gravity = -9.81f;
 
     public Transform groundCheck;
@@ -18,7 +23,12 @@ public class PlayerMoviment : MonoBehaviour
 
     public float jumpHeight = 3f;
     // Start is called before the first frame update
-   
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -53,6 +63,13 @@ public class PlayerMoviment : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded ) {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
+
+        //Logica para animacao
+        velocityZ = move.z * speed;
+        velocityX = move.x * speed;
+
+        animator.SetFloat("Velocity Z", velocityZ);
+        animator.SetFloat("Velocity X", velocityX);
 
 
     }
