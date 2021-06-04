@@ -33,7 +33,8 @@ public class PlayerMoviment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Moviment();
+          Moviment();
+
 
 
     }
@@ -65,12 +66,17 @@ public class PlayerMoviment : MonoBehaviour
         }
 
         //Logica para animacao
-        velocityZ = move.z * speed;
-        velocityX = move.x * speed;
+        
+            velocityZ = move.z * speed;
+            velocityX = move.x * speed;
+       
+        
 
         animator.SetFloat("Velocity Z", velocityZ);
         animator.SetFloat("Velocity X", velocityX);
 
 
     }
+
+
 }

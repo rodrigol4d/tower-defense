@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour,IEnemy
     [SerializeField]
     private Souls _soul;
 
+    //My target direciona a mira das torres
+
+    public GameObject MyTarget;
+
    public void LifeDamage(int damageTaken)
     {
         Life -= damageTaken;

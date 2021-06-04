@@ -140,6 +140,8 @@ public class TowerHead : MonoBehaviour
 
         if (enemyTarget != null)
         {
+        
+          //  var enemyPosition = new Vector3(enemyTarget.transform.position.x, enemyTarget.transform.position.y + 1, enemyTarget.transform.position.z);
             //    transform.LookAt(enemyTarget.transform.gameObject.transform);
             Direction = (enemyTarget.transform.position - transform.position).normalized;
             RotGoal = Quaternion.LookRotation(Direction);
