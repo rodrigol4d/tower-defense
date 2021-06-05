@@ -37,7 +37,12 @@ public class Bullet : MonoBehaviour
 
      public void Search()
     {
-       var GoalPosition = enemy.transform.position;
+        //  Pega tamanho do objeto e divide por 2, bala sempre ira olhar para o meio do objeto
+
+       // float height = enemy.GetComponent<Collider>().bounds.size.y;
+        //var enemyPosition = new Vector3(enemy.transform.position.x, enemy.transform.position.y + (height / 2), enemy.transform.position.z);
+
+        var GoalPosition = enemy.transform.position;
             var MyPosition = transform.position;
             var destination = (GoalPosition - MyPosition);
             transform.Translate(destination.normalized * 0.1f, Space.World);

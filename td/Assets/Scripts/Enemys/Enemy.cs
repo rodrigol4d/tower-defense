@@ -17,14 +17,16 @@ public class Enemy : MonoBehaviour,IEnemy
 
     public GameObject MyTarget;
 
+
+
    public void LifeDamage(int damageTaken)
     {
         Life -= damageTaken;
 
         if(Life <= 0)
         {
+            Debug.Log("vida menor que zero");
             Instantiate(_soul, transform.position, Quaternion.identity);
-            
             Destroy(this.gameObject);
         }
     }

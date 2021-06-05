@@ -36,20 +36,10 @@ public class TowerHead : MonoBehaviour
     private float _fireCountdown = 0f; // Time before shoot
 
 
-  
-
-   
-
-
-
     // Start is called before the first frame update
     void Start()
     {
       
-
-
-
-
 
 
     }
@@ -60,11 +50,6 @@ public class TowerHead : MonoBehaviour
         // GetClosestEnemy();
         GetDestinationClosestEnemy();
         ShotReload();
-
-
-
-
-
 
     }
     public void GetEnemyTest()
@@ -114,6 +99,7 @@ public class TowerHead : MonoBehaviour
         var destination = GameObject.Find("Destination");
 
         hitColliders = Physics.OverlapSphere(transform.position, TowerRadius, layerMask);
+        Debug.Log("eee");
 
         if (hitColliders.Length > 0)
         {
@@ -140,9 +126,12 @@ public class TowerHead : MonoBehaviour
 
         if (enemyTarget != null)
         {
-        
-          //  var enemyPosition = new Vector3(enemyTarget.transform.position.x, enemyTarget.transform.position.y + 1, enemyTarget.transform.position.z);
-            //    transform.LookAt(enemyTarget.transform.gameObject.transform);
+            //  Pega tamanho do objeto e divide por 2, torre sempre ira olhar para o meio do objeto
+           // float height = enemyTarget.GetComponent<Collider>().bounds.size.y;
+           // Debug.Log(height);
+           // var enemyPosition = new Vector3(enemyTarget.transform.position.x, enemyTarget.transform.position.y + (height /2), enemyTarget.transform.position.z);
+
+            transform.LookAt(enemyTarget.transform.position);
             Direction = (enemyTarget.transform.position - transform.position).normalized;
             RotGoal = Quaternion.LookRotation(Direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, RotGoal, LookSpeed);
