@@ -103,6 +103,7 @@ public class TowerHead : MonoBehaviour
 
         if (hitColliders.Length > 0)
         {
+            
             closestTarget = hitColliders.OrderBy(x => (destination.transform.position - x.transform.position).sqrMagnitude).First();
 
         }
@@ -131,10 +132,11 @@ public class TowerHead : MonoBehaviour
            // Debug.Log(height);
            // var enemyPosition = new Vector3(enemyTarget.transform.position.x, enemyTarget.transform.position.y + (height /2), enemyTarget.transform.position.z);
 
-            transform.LookAt(enemyTarget.transform.position);
+            
             Direction = (enemyTarget.transform.position - transform.position).normalized;
             RotGoal = Quaternion.LookRotation(Direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, RotGoal, LookSpeed);
+           // transform.LookAt(enemyTarget.transform.position);
 
             Shot(enemyTarget.gameObject);
 

@@ -31,7 +31,7 @@ public class EnemyTakeDamage : MonoBehaviour
                     enemyData.LifeDamage(value / 2);
                     break;
             }
-            Debug.Log(damageType == collisionType.head);
+  
             
 
         }

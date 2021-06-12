@@ -45,9 +45,10 @@ public class Gun : MonoBehaviour
         if (Physics.Raycast(fpsCam.transform.position,fpsCam.transform.forward,out hit,range))
         {
             enemyDamage = hit.transform.GetComponent<EnemyTakeDamage>();
-            Debug.Log(hit.transform.name);
+ 
 
             if(enemyDamage != null) {
+                Debug.Log(enemyDamage.damageType);
                 enemyDamage.Hit(damage);
             }
 
