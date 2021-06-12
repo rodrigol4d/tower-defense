@@ -845,7 +845,7 @@ GameObject:
   - component: {fileID: 3478784018541526600}
   - component: {fileID: 3479280253106882902}
   - component: {fileID: 4568955500503909612}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spine_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2359,7 +2359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28651a7f05577943b7428dba3b77c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 100
+  _life: 100
   Weapon: {fileID: 0}
   _enemyName: Demon-Four-Horn
   _soul: {fileID: 1495240996416061245, guid: 832719be1f5c35d4c971db05432565d1, type: 3}
@@ -2368,6 +2368,22 @@ MonoBehaviour:
   _collider: {fileID: 0}
   _myEnemyScript: {fileID: 0}
   _myMovimentScript: {fileID: 0}
+  _hitBodyParts:
+  - {fileID: 2744891352648315173}
+  - {fileID: 3479280252725241254}
+  - {fileID: 3479280253624484678}
+  - {fileID: 3479280252255881709}
+  - {fileID: 3479280254003940188}
+  - {fileID: 3479280253942673106}
+  - {fileID: 3479280253835007215}
+  - {fileID: 3479280253106882902}
+  - {fileID: 3479280252396715014}
+  - {fileID: 3479280252044525773}
+  - {fileID: 3479280253591957410}
+  - {fileID: 3479280252118196583}
+  - {fileID: 3479280252254681431}
+  - {fileID: 3479280252513361191}
+  state: 0
   MyTarget: {fileID: 0}
 --- !u!65 &4568955501195599917
 BoxCollider:

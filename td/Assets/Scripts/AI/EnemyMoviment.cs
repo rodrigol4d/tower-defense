@@ -94,7 +94,7 @@ public class EnemyMoviment : MonoBehaviour
         {
             _navMeshAgent.stoppingDistance = 0.5f;
             _navMeshAgent.SetDestination(destination.transform.position);
-            Debug.Log(destination.transform.position);
+         
 
         }
 

@@ -41,6 +41,12 @@ public class EnemyTakeDamage : MonoBehaviour
         }
 
     }
+    public void checkAlive() {
+        if(enemyData.GetLife() <=0)
+        {
+
+        }
+    }
 
 
     

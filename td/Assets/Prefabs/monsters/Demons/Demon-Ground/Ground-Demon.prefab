@@ -869,7 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28651a7f05577943b7428dba3b77c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 100
+  _life: 100
   Weapon: {fileID: 0}
   _enemyName: Demon-Four-Horn
   _soul: {fileID: 2711400735648969191, guid: 11837afb7f769b941806f5b8ee411a8a, type: 3}
@@ -878,6 +878,22 @@ MonoBehaviour:
   _collider: {fileID: 0}
   _myEnemyScript: {fileID: 0}
   _myMovimentScript: {fileID: 0}
+  _hitBodyParts:
+  - {fileID: 4706248014064920705}
+  - {fileID: 4706248013179893692}
+  - {fileID: 4706248014713015214}
+  - {fileID: 4706248014682955051}
+  - {fileID: 4706248014317459093}
+  - {fileID: 4706248012994182971}
+  - {fileID: 4706248014204959891}
+  - {fileID: 4706248013173729211}
+  - {fileID: 4706248013865070947}
+  - {fileID: 4706248013285463396}
+  - {fileID: 4706248014815358962}
+  - {fileID: 4706248014091799564}
+  - {fileID: 4706248013256732136}
+  - {fileID: 4706248012979482685}
+  state: 0
   MyTarget: {fileID: 0}
 --- !u!195 &4706248014762164026
 NavMeshAgent:

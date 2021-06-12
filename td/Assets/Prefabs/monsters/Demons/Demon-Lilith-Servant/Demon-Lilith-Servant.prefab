@@ -1031,7 +1031,7 @@ MonoBehaviour:
   _myCheckRadius: 2.84
   LookMyEnemySpeed: 0.05
   _myEnemyStopDistance: 1.1
-  _attackPoint: {fileID: 0}
+  _attackPoint: {fileID: 5925326123080680038}
   _isAttacking: 0
   _moveAfterAttack: 1.14
   _enemyAttackDistance: 1.3
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28651a7f05577943b7428dba3b77c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 100
+  _life: 100
   Weapon: {fileID: 0}
   _enemyName: Demon-Four-Horn
   _soul: {fileID: 4486355272063081950, guid: 96dde0a58c52be24cadbb784fc9d34ea, type: 3}
@@ -1058,6 +1058,22 @@ MonoBehaviour:
   _collider: {fileID: 0}
   _myEnemyScript: {fileID: 0}
   _myMovimentScript: {fileID: 0}
+  _hitBodyParts:
+  - {fileID: 5920558740320406215}
+  - {fileID: 5920558739285716133}
+  - {fileID: 5920558739377802102}
+  - {fileID: 5920558740389362026}
+  - {fileID: 5920558739404188194}
+  - {fileID: 5920558740428208271}
+  - {fileID: 5920558741013750100}
+  - {fileID: 5920558739838399554}
+  - {fileID: 5920558740138624704}
+  - {fileID: 5920558740733819936}
+  - {fileID: 5920558740284281526}
+  - {fileID: 5920558740881972694}
+  - {fileID: 5920558740584107276}
+  - {fileID: 5920558739714059811}
+  state: 0
   MyTarget: {fileID: 5921333564734881988}
 --- !u!1 &5921337162692890086
 GameObject:
