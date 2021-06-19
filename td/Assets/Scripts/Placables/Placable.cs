@@ -1,24 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum Types
 {
-    Gun,
+    machine,
     Magic,
+}
+public enum PlacableLevel
+{
+    level_1,
+    level_2,
+    level_3,
+
 }
 
 public class Placable : MonoBehaviour
 {
+    [Header("Basic Atributtes")]
     [SerializeField]
-    private string _name;
+    protected string _name;
     [SerializeField]
-    private int _level;
+    protected PlacableLevel _level;
     [SerializeField]
-    private GameObject[] _abilitys;
+    protected GameObject[] _abilitys;
     [SerializeField]
-    private GameObject[] _specialAbilitys;
+    protected GameObject[] _specialAbilitys;
     [SerializeField]
-    private Types _type;
-   
+    protected Types _type;
+    [SerializeField]
+    protected float _placebleRadius = 1f;
+    [SerializeField]
+    protected float _lookSpeed = 0.10f;
+    [SerializeField]
+    protected Animator _animator;
+
+ 
+
 }
