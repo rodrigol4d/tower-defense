@@ -13,6 +13,13 @@ public enum PlacableLevel
 
 }
 
+public enum Status
+{
+    idle,
+    enemyDetected,
+    engaged
+}
+
 public class Placable : MonoBehaviour
 {
     [Header("Basic Atributtes")]
@@ -32,7 +39,9 @@ public class Placable : MonoBehaviour
     protected float _lookSpeed = 0.10f;
     [SerializeField]
     protected Animator _animator;
+    [SerializeField]
+    protected Status _status;
 
- 
+
 
 }

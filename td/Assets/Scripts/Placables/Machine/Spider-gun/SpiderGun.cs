@@ -5,6 +5,8 @@ using System.Linq;
 
 public class SpiderGun : Placable
 {
+    [SerializeField]
+    private Light[] _eyeLights;
     [Header("Damage")]
     [SerializeField]
     private int _bulletDamage = 20;
@@ -12,12 +14,10 @@ public class SpiderGun : Placable
     private int _laserDamage = 40;
 
     [Header("Shot Atributes")]
-
     [SerializeField]
     private ParticleSystem _muzzleFlashBullet;
     [SerializeField]
     private ParticleSystem _muzzleFlashLaser;
-
     [SerializeField]
     private float _fireBulletRate = 1f; // 1 bullet for second
     [SerializeField]
@@ -28,7 +28,6 @@ public class SpiderGun : Placable
     [SerializeField]
     private float _timeBeforeShottingLaser = 2f;
     private float _fireLaserCountdown = 0f; // Time before shoot (Usar com variavel "time before shotting")
-
 
     [Header("Enemy")]
     [SerializeField]
@@ -44,7 +43,7 @@ public class SpiderGun : Placable
     [SerializeField]
     private Transform _rotateTopPart;
 
-    [SerializeField]
+  
 
 
     // Start is called before the first frame update
@@ -62,7 +61,14 @@ public class SpiderGun : Placable
         ShotReload();
 
     }
-  
+    private void Update()
+    {
+        StateStatus();
+        DetectedStatus();
+
+
+    }
+
     public void GetClosestEnemy()
     {
 
@@ -120,6 +126,7 @@ public class SpiderGun : Placable
         if (enemyTarget == null)
         {
             enemyTarget = closestTarget;
+    
         }
         else if (!hitColliders.Any(x => x == enemyTarget))
         {
@@ -135,12 +142,15 @@ public class SpiderGun : Placable
 
             BodyandHeadMoviment();
 
-
-
-            if (BodyandHeadMoviment() <= 70)
+            if (BodyandHeadMoviment() <= 73)
             {
+                _status = Status.engaged;
                 BulletShot();
                 LaserShot();
+            }
+            else
+            {
+                _status = Status.enemyDetected;
             }
 
         }
@@ -155,20 +165,22 @@ public class SpiderGun : Placable
 
         if (bodyAngle > 70)
         {
+            _animator.SetBool("isTurning", true);
             Quaternion lookBodyRotation = Quaternion.LookRotation(DirectionBodyToTarget);
             Vector3 bodyRotation = Quaternion.Lerp(transform.rotation, lookBodyRotation, Time.deltaTime * _lookSpeed).eulerAngles;
             transform.rotation = Quaternion.Euler(0f, bodyRotation.y, 0f);
-            _animator.SetBool("isWalking", true);
+            
+            
         }
         if (bodyAngle <= 70)
         {
+            _animator.SetBool("isTurning", false);
             Quaternion lookRotation = Quaternion.LookRotation(DirectionTopToTarget);
             Vector3 rotation = Quaternion.Lerp(_rotateTopPart.rotation, lookRotation, Time.deltaTime * _lookSpeed).eulerAngles;
-            _rotateTopPart.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
-            _animator.SetBool("isWalking", false);
-            
-
+            _rotateTopPart.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);   
         }
+  
+        Debug.Log(topAngle);
 
         return topAngle;
 
@@ -200,11 +212,13 @@ public class SpiderGun : Placable
       
         if(_fireBulletCountdown <= 0f && enemyTarget != null)
         {
-            _animator.Play("robot-first-attack");
+            _animator.Play("spider-gun-attack");
+            //_animator.Play("spider-gun-attack");
             _muzzleFlashBullet.Play();
             enemyTarget.GetComponent<EnemyTakeDamage>().Hit(_bulletDamage);
             _fireBulletCountdown = _timeBeforeShottingBullet / _fireBulletRate;
         }
+
         
     }
 
@@ -213,12 +227,102 @@ public class SpiderGun : Placable
     
         if (_fireLaserCountdown <= 0f && enemyTarget != null)
         {
-            _animator.Play("robot-laser-attack");
+            _animator.Play("spider-gun-head-attack");
+            //_animator.Play("spider-gun-head-attack");
             _muzzleFlashLaser.Play();
             enemyTarget.GetComponent<EnemyTakeDamage>().Hit(_laserDamage);
             _fireLaserCountdown = _timeBeforeShottingLaser / _fireLaserRate;
         }
+    
     }
+
+    // Set Status based on condition
+
+    private void DetectedStatus()
+    {
+        if (enemyTarget == null)
+        {
+            _status = Status.idle;
+        }
+
+        if (enemyTarget != null && _status != Status.engaged)
+        {
+            _status = Status.enemyDetected;
+
+        }
+        else if (_status == Status.engaged)
+        {
+            // GetDestinationClosestEnemy aplicando o engaged
+
+        }
+       
+
+
+
+
+    }
+
+    // Apply something based on status
+    private void StateStatus()
+    {
+        if(_status == Status.idle)
+        {
+            _eyeLights.All(eye =>
+            {
+                if (eye.name == "GreenLight")
+                {
+                    eye.enabled = true;
+                }
+                else
+                {
+                    eye.enabled = false;
+                }
+                return true;
+            });
+        }
+        if (_status == Status.enemyDetected)
+        {
+            _eyeLights.All(eye =>
+            {
+                if (eye.name == "RedLight")
+                {
+                    eye.enabled = true;
+
+                }
+                else
+                {
+                    eye.enabled = false;
+
+                }
+                return true;
+            });
+
+        }
+        if (_status == Status.engaged)
+        {
+            _eyeLights.All(eye =>
+            {
+                if (eye.name == "RedLight")
+                {
+                    eye.enabled = true;
+
+                }
+                else
+                {
+                    eye.enabled = false;
+
+                }
+                return true;
+            });
+        }
+
+
+    }
+
+
+   
+
+
 
   
 
