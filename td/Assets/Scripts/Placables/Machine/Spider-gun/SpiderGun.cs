@@ -15,6 +15,8 @@ public class SpiderGun : Placable
 
     [Header("Shot Atributes")]
     [SerializeField]
+    private bool _canUseHeadShoot = false;
+    [SerializeField]
     private ParticleSystem _muzzleFlashBullet;
     [SerializeField]
     private ParticleSystem _muzzleFlashLaser;
@@ -65,7 +67,7 @@ public class SpiderGun : Placable
     {
         StateStatus();
         DetectedStatus();
-
+        LevelAtributtes();
 
     }
 
@@ -107,6 +109,7 @@ public class SpiderGun : Placable
 
     }
 
+ 
     public void GetDestinationClosestEnemy() {
         var destination = GameObject.Find("Destination");
 
@@ -146,7 +149,7 @@ public class SpiderGun : Placable
             {
                 _status = Status.engaged;
                 BulletShot();
-                LaserShot();
+                HeadShot();
             }
             else
             {
@@ -213,7 +216,6 @@ public class SpiderGun : Placable
         if(_fireBulletCountdown <= 0f && enemyTarget != null)
         {
             _animator.Play("spider-gun-attack");
-            //_animator.Play("spider-gun-attack");
             _muzzleFlashBullet.Play();
             enemyTarget.GetComponent<EnemyTakeDamage>().Hit(_bulletDamage);
             _fireBulletCountdown = _timeBeforeShottingBullet / _fireBulletRate;
@@ -222,18 +224,15 @@ public class SpiderGun : Placable
         
     }
 
-    private void LaserShot()
+    private void HeadShot()
     {
-    
-        if (_fireLaserCountdown <= 0f && enemyTarget != null)
+        if (_fireLaserCountdown <= 0f && _canUseHeadShoot == true && enemyTarget != null)
         {
             _animator.Play("spider-gun-head-attack");
-            //_animator.Play("spider-gun-head-attack");
             _muzzleFlashLaser.Play();
             enemyTarget.GetComponent<EnemyTakeDamage>().Hit(_laserDamage);
             _fireLaserCountdown = _timeBeforeShottingLaser / _fireLaserRate;
         }
-    
     }
 
     // Set Status based on condition
@@ -255,11 +254,6 @@ public class SpiderGun : Placable
             // GetDestinationClosestEnemy aplicando o engaged
 
         }
-       
-
-
-
-
     }
 
     // Apply something based on status
@@ -319,7 +313,31 @@ public class SpiderGun : Placable
 
     }
 
+    private void LevelAtributtes()
+    {
+        switch(_level)
+        {
+            case PlacableLevel.level_1:
+                _canUseHeadShoot = false;
+                _bulletDamage = 20;
+                _laserDamage = 40;
+                break;
 
+            case PlacableLevel.level_2:
+                _canUseHeadShoot = true;
+                _bulletDamage = 20 * 2;
+                _laserDamage = 40 * 2;
+                break;
+
+            case PlacableLevel.level_3:
+                _bulletDamage = 20 * 3;
+                _laserDamage = 40 * 3;
+                break;
+        }
+    }
+
+
+    
    
 
 
